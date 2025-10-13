@@ -18,7 +18,22 @@ import {
 } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { ChartNoAxesCombined, ChevronRight, LayoutGrid, Notebook, ReceiptText, SquareUser, Users } from 'lucide-react';
+import {
+    AlignHorizontalJustifyStart,
+    ChartBarStacked,
+    ChartNoAxesCombined,
+    ChevronRight,
+    Combine,
+    LayoutGrid,
+    Notebook,
+    Package,
+    ReceiptText,
+    Shapes,
+    SquareUser,
+    StarHalf,
+    Tickets,
+    Users,
+} from 'lucide-react';
 import AppLogo from './app-logo';
 
 // Grouped navigation items with their required permissions
@@ -78,16 +93,63 @@ const navigationGroups = [
                 icon: ReceiptText,
                 permission: 'enquiry-view',
             },
+            {
+                title: 'Reviews',
+                href: '/admin/reviews',
+                icon: StarHalf,
+                permission: 'review-view',
+            },
+            {
+                title: 'Hightlighted',
+                href: '/admin/highlighted',
+                icon: Combine,
+                permission: 'highlighted-view',
+            },
+            {
+                title: 'Coupon Codes',
+                href: '/admin/coupons',
+                icon: Tickets,
+                permission: 'coupon-view',
+            },
         ],
     },
     {
         title: 'Products',
         items: [
             {
-                title: 'Properties',
-                href: '/admin/properties',
-                icon: ReceiptText,
-                permission: 'property-view',
+                title: 'Attributes',
+                href: '/admin/attributes',
+                icon: AlignHorizontalJustifyStart,
+                permission: 'attribute-view',
+            },
+            {
+                title: 'Collections',
+                href: '/admin/collections',
+                icon: Shapes,
+                permission: 'collection-view',
+            },
+            {
+                title: 'Categories',
+                href: '/admin/categories',
+                icon: ChartBarStacked,
+                permission: 'category-view',
+            },
+            {
+                title: 'Products',
+                href: '/admin/products',
+                icon: Package,
+                permission: 'product-view',
+            },
+        ],
+    },
+    {
+        title: 'Orders',
+        items: [
+            {
+                title: 'Orders',
+                href: '/admin/orders',
+                icon: LayoutGrid,
+                permission: 'order-view',
             },
         ],
     },
