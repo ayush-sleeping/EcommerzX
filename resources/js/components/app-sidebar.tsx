@@ -61,6 +61,12 @@ const navigationGroups = [
                 icon: SquareUser,
                 permission: 'employee-view',
             },
+            {
+                title: 'Customers',
+                href: '/admin/customers',
+                icon: SquareUser,
+                permission: 'customer-view',
+            },
         ],
     },
     {

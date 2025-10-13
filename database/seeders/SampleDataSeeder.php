@@ -22,6 +22,8 @@ class SampleDataSeeder extends Seeder
         $rootRole = Role::where('name', 'RootUser')->first();
         $adminRole = Role::where('name', 'Admin')->first();
         $userRole = Role::where('name', 'User')->first();
+        $employeeRole = Role::where('name', 'Employee')->first();
+        $customerRole = Role::where('name', 'Customer')->first();
 
         // 2. Create sample users and assign roles
         $users = [
@@ -49,9 +51,18 @@ class SampleDataSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'status' => 'ACTIVE',
             ],
+            [
+                'first_name' => 'Emma',
+                'last_name' => 'Employee',
+                'email' => 'emma.employee@example.com',
+                'mobile' => '9000000003',
+                'password' => Hash::make('password'),
+                'status' => 'ACTIVE',
+            ],
         ];
         $userModels = [];
-        $roleNames = ['RootUser', 'Admin', 'User'];
+        $roleNames = ['RootUser', 'Admin', 'Employee', 'Customer', 'User'];
+
         foreach ($users as $i => $userData) {
             $user = User::create($userData);
             $user->assignRole($roleNames[$i]);
@@ -71,6 +82,12 @@ class SampleDataSeeder extends Seeder
                 'emp_id' => 'EMP-0002',
                 'personal_email' => 'bob.personal@company.com',
                 'designation' => 'Admin',
+            ],
+            [
+                'user_id' => $userModels[2]->id, // Emma (Employee)
+                'emp_id' => 'EMP-0003',
+                'personal_email' => 'emma.personal@company.com',
+                'designation' => 'Customer Support',
             ],
         ];
         foreach ($employees as $empData) {
@@ -94,6 +111,14 @@ class SampleDataSeeder extends Seeder
                 'mobile' => '9000000011',
                 'message' => 'Can I get access to the dashboard?',
                 'remark' => 'Access request',
+            ],
+            [
+                'first_name' => 'Mike',
+                'last_name' => 'Johnson',
+                'email' => 'mike.johnson@example.com',
+                'mobile' => '9000000012',
+                'message' => 'I need help with my account settings.',
+                'remark' => 'Technical support',
             ],
         ];
         foreach ($enquiries as $enqData) {

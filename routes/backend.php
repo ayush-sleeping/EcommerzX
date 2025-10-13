@@ -1,33 +1,18 @@
 <?php
 
+use App\Models\User;
+use Inertia\Inertia;
+use App\Services\QueryCacheService;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AnalyticsController;
+use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\EnquiryController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
-use App\Models\User;
-use App\Services\QueryCacheService;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-/*
-<?php
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () { Inertia::render('dashboard');})->name('dashboard');
-});
- */
-
-// Dashboard route - redirects to admin dashboard
-// -------------------------------------------------------------------------------------------------------- ::
-/* Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return redirect()->route('admin.dashboard.index');
-    })->name('dashboard');
-}); */
-
+// Backend Routes
 // -------------------------------------------------------------------------------------------------------- ::
 Route::middleware(['auth', 'verified', 'admin', 'preventBackHistory'])->group(function () {
 
@@ -58,6 +43,12 @@ Route::middleware(['auth', 'verified', 'admin', 'preventBackHistory'])->group(fu
         Route::post('employees/data', [EmployeeController::class, 'data'])->name('employees.data');
         Route::post('employees/list', [EmployeeController::class, 'list'])->name('employees.list');
         Route::post('employees/change-status', [EmployeeController::class, 'changeStatus'])->name('employees.change.status');
+
+        // Customers
+        Route::resource('customers', CustomerController::class);
+        Route::post('customers/data', [CustomerController::class, 'data'])->name('customers.data');
+        Route::post('customers/list', [CustomerController::class, 'list'])->name('customers.list');
+        Route::post('customers/change-status', [CustomerController::class, 'changeStatus'])->name('customers.change.status');
 
         // Enquiries
         Route::resource('enquiries', EnquiryController::class);
