@@ -45,7 +45,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                         <div className="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
                             <GalleryVerticalEnd className="size-4" />
                         </div>
-                        LaraBaseX
+                        EcommerzX
                     </a>
                     <div className="flex flex-col gap-6">
                         {/* ------------------------------------------------------------ :: */}
@@ -56,7 +56,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                     <div className="flex flex-col gap-6">
                                         <div className="flex flex-col items-center text-center">
                                             <h1 className="text-2xl font-bold">Welcome back</h1>
-                                            <p className="text-balance text-muted-foreground">Login to your LaraBaseX account</p>
+                                            <p className="text-balance text-muted-foreground">Login to your EcommerzX account</p>
                                         </div>
 
                                         {status && (
@@ -178,7 +178,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                                     <div className="relative z-10 px-8 py-12 text-center">
                                         <div className="mb-4 animate-bounce text-6xl drop-shadow-lg">🚀</div>
                                         {/* Title (pure white) */}
-                                        <h2 className="text-4xl font-extrabold tracking-tight text-white">LaraBaseX</h2>
+                                        <h2 className="text-4xl font-extrabold tracking-tight text-white">EcommerzX</h2>
                                         <p className="mt-3 text-lg font-medium text-gray-300">Laravel 12 + React + TypeScript</p>
 
                                         {/* Feature tags — text is white only */}

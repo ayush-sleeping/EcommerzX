@@ -72,9 +72,9 @@ class TrustHosts extends Middleware
             '*.test',
             '*.dev',
             // Add your development domains
-            'larabasex.local',
-            'admin.larabasex.local',
-            'api.larabasex.local',
+            'ecommerzx.local',
+            'admin.ecommerzx.local',
+            'api.ecommerzx.local',
         ];
     }
 

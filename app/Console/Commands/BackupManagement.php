@@ -39,14 +39,14 @@ class BackupManagement extends Command
     {--verify : Verify backup integrity after creation}';
 
     /* The console command description. */
-    protected $description = 'Advanced backup management system for LaraBaseX';
+    protected $description = 'Advanced backup management system for EcommerzX';
 
     /* Execute the console command. */
     public function handle(): int
     {
         $action = $this->argument('action');
 
-        $this->info('LaraBaseX Backup Management System');
+        $this->info('EcommerzX Backup Management System');
         $this->info('====================================');
 
         switch ($action) {

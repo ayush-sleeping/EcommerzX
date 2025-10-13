@@ -34,7 +34,7 @@ class CacheManagement extends Command
      *
      * @var string
      */
-    protected $description = 'Comprehensive cache management for LaraBaseX';
+    protected $description = 'Comprehensive cache management for EcommerzX';
 
     /* Execute the console command. */
     public function handle(): int
@@ -42,7 +42,7 @@ class CacheManagement extends Command
         $action = $this->argument('action');
         $force = $this->option('force');
 
-        $this->info('🚀 LaraBaseX Cache Management System');
+        $this->info('🚀 EcommerzX Cache Management System');
         $this->info('=====================================');
 
         switch ($action) {

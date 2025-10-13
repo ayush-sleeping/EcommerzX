@@ -1,49 +1,89 @@
 import { NavFooter } from '@/components/nav-footer';
-import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import {
+    Sidebar,
+    SidebarContent,
+    SidebarFooter,
+    SidebarGroup,
+    SidebarGroupContent,
+    SidebarGroupLabel,
+    SidebarHeader,
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
+    SidebarMenuSub,
+    SidebarMenuSubButton,
+    SidebarMenuSubItem,
+} from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { ChartNoAxesCombined, LayoutGrid, Notebook, ReceiptText, SquareUser, Users } from 'lucide-react';
+import { ChartNoAxesCombined, ChevronRight, LayoutGrid, Notebook, ReceiptText, SquareUser, Users } from 'lucide-react';
 import AppLogo from './app-logo';
 
-// Navigation items with their required permissions ::
-const allNavItems: (NavItem & { permission?: string })[] = [
+// Grouped navigation items with their required permissions
+const navigationGroups = [
     {
-        title: 'Dashboard',
-        href: '/dashboard',
-        icon: LayoutGrid,
-        permission: 'dashboard-view',
+        title: 'Overview',
+        items: [
+            {
+                title: 'Dashboard',
+                href: '/dashboard',
+                icon: LayoutGrid,
+                permission: 'dashboard-view',
+            },
+            {
+                title: 'Analytics',
+                href: '/admin/analytics',
+                icon: ChartNoAxesCombined,
+                permission: 'analytics-view',
+            },
+        ],
     },
     {
-        title: 'Roles',
-        href: '/admin/roles',
-        icon: Notebook,
-        permission: 'role-view',
+        title: 'User Management',
+        items: [
+            {
+                title: 'Roles',
+                href: '/admin/roles',
+                icon: Notebook,
+                permission: 'role-view',
+            },
+            {
+                title: 'Users',
+                href: '/admin/users',
+                icon: Users,
+                permission: 'user-view',
+            },
+            {
+                title: 'Employees',
+                href: '/admin/employees',
+                icon: SquareUser,
+                permission: 'employee-view',
+            },
+        ],
     },
     {
-        title: 'Users',
-        href: '/admin/users',
-        icon: Users,
-        permission: 'user-view',
+        title: 'Business',
+        items: [
+            {
+                title: 'Enquiries',
+                href: '/admin/enquiries',
+                icon: ReceiptText,
+                permission: 'enquiry-view',
+            },
+        ],
     },
     {
-        title: 'Employees',
-        href: '/admin/employees',
-        icon: SquareUser,
-        permission: 'employee-view',
-    },
-    {
-        title: 'Enquiries',
-        href: '/admin/enquiries',
-        icon: ReceiptText,
-        permission: 'enquiry-view',
-    },
-    {
-        title: 'Analytics',
-        href: '/admin/analytics',
-        icon: ChartNoAxesCombined,
-        permission: 'analytics-view',
+        title: 'Products',
+        items: [
+            {
+                title: 'Properties',
+                href: '/admin/properties',
+                icon: ReceiptText,
+                permission: 'property-view',
+            },
+        ],
     },
 ];
 
@@ -91,14 +131,20 @@ const hasPermission = (user: AuthUser | null, permission: string): boolean => {
 
 export function AppSidebar() {
     const { auth } = usePage<PageProps>().props;
+    const page = usePage();
 
-    // Filter navigation items based on user permissions
-    const mainNavItems = allNavItems.filter((item) => {
-        // If no permission required, show the item
-        if (!item.permission) return true;
-        // Check if user has the required permission
-        return hasPermission(auth.user, item.permission);
-    });
+    // Filter navigation groups based on user permissions
+    const filteredNavigationGroups = navigationGroups
+        .map((group) => ({
+            ...group,
+            items: group.items.filter((item) => {
+                // If no permission required, show the item
+                if (!item.permission) return true;
+                // Check if user has the required permission
+                return hasPermission(auth.user, item.permission);
+            }),
+        }))
+        .filter((group) => group.items.length > 0); // Only show groups that have visible items
 
     return (
         <Sidebar collapsible="icon" variant="inset">
@@ -115,7 +161,39 @@ export function AppSidebar() {
             </SidebarHeader>
 
             <SidebarContent>
-                <NavMain items={mainNavItems} />
+                <SidebarGroup>
+                    <SidebarGroupLabel>Platform</SidebarGroupLabel>
+                    <SidebarGroupContent>
+                        <SidebarMenu>
+                            {filteredNavigationGroups.map((group) => (
+                                <Collapsible key={group.title} asChild defaultOpen={true} className="group/collapsible">
+                                    <SidebarMenuItem>
+                                        <CollapsibleTrigger asChild>
+                                            <SidebarMenuButton tooltip={group.title}>
+                                                <ChevronRight className="transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                                                <span>{group.title}</span>
+                                            </SidebarMenuButton>
+                                        </CollapsibleTrigger>
+                                        <CollapsibleContent>
+                                            <SidebarMenuSub>
+                                                {group.items.map((item) => (
+                                                    <SidebarMenuSubItem key={item.title}>
+                                                        <SidebarMenuSubButton asChild isActive={page.url.startsWith(item.href)}>
+                                                            <Link href={item.href} prefetch>
+                                                                {item.icon && <item.icon />}
+                                                                <span>{item.title}</span>
+                                                            </Link>
+                                                        </SidebarMenuSubButton>
+                                                    </SidebarMenuSubItem>
+                                                ))}
+                                            </SidebarMenuSub>
+                                        </CollapsibleContent>
+                                    </SidebarMenuItem>
+                                </Collapsible>
+                            ))}
+                        </SidebarMenu>
+                    </SidebarGroupContent>
+                </SidebarGroup>
             </SidebarContent>
 
             <SidebarFooter>

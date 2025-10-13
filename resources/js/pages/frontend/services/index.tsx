@@ -41,7 +41,7 @@ export default function ServicesPage() {
                     {/* Section Header */}
                     <div className="mb-12 text-center sm:mb-16">
                         <h2 className="mb-3 text-4xl font-bold tracking-tight text-gray-900 sm:mb-4 sm:text-5xl lg:text-6xl dark:text-white">
-                            What LaraBaseX Offers
+                            What EcommerzX Offers
                         </h2>
                         <p className="text-lg font-light text-gray-500 sm:text-xl dark:text-gray-400">
                             A comprehensive starter kit with everything you need to build modern web applications.

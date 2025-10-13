@@ -154,8 +154,8 @@ export const About3 = ({
 };
 
 export default function AboutPage() {
-    const laraBaseXProps = {
-        title: 'About LaraBaseX',
+    const ecommerzxProps = {
+        title: 'About EcommerzX',
         description:
             'A comprehensive Laravel 12 + ReactJS starter boilerplate that eliminates weeks of setup time and provides everything you need to build modern, scalable web applications.',
         mainImage: {
@@ -168,12 +168,12 @@ export default function AboutPage() {
         },
         breakout: {
             src: '/logo.svg',
-            alt: 'LaraBaseX Logo',
+            alt: 'EcommerzX Logo',
             title: 'Production-Ready Frontend Pages Included',
             description:
                 'Get beautiful, responsive frontend pages out of the box. Simply modify the content to match your project needs - no need to build from scratch.',
             buttonText: 'View Documentation',
-            buttonUrl: 'https://github.com/ayush-sleeping/LaraBaseX/tree/main/documentation',
+            buttonUrl: 'https://github.com/ayush-sleeping/EcommerzX/tree/main/documentation',
         },
         companiesTitle: 'Built with industry-standard technologies',
         companies: [
@@ -202,9 +202,9 @@ export default function AboutPage() {
                 alt: 'MySQL',
             },
         ],
-        achievementsTitle: 'What LaraBaseX Delivers',
+        achievementsTitle: 'What EcommerzX Delivers',
         achievementsDescription:
-            'Skip months of boilerplate development and focus on building your unique features. LaraBaseX provides a solid foundation with enterprise-grade security and scalability.',
+            'Skip months of boilerplate development and focus on building your unique features. EcommerzX provides a solid foundation with enterprise-grade security and scalability.',
         achievements: [
             { label: 'Setup Time Saved', value: '2+ Weeks' },
             { label: 'Ready-to-Use Features', value: '12+' },
@@ -216,7 +216,7 @@ export default function AboutPage() {
     return (
         <div className="relative min-h-screen w-full bg-white">
             <Navbar />
-            <About3 {...laraBaseXProps} />
+            <About3 {...ecommerzxProps} />
         </div>
     );
 }

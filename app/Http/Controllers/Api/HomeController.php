@@ -36,7 +36,7 @@ class HomeController extends Controller
      *             @OA\Items(
      *
      *                 @OA\Property(property="id", type="integer", example=1, description="Slider ID"),
-     *                 @OA\Property(property="title", type="string", example="Welcome to LaraBaseX", description="Slider title"),
+     *                 @OA\Property(property="title", type="string", example="Welcome to EcommerzX", description="Slider title"),
      *                 @OA\Property(property="description", type="string", example="Best platform for your needs", description="Slider description"),
      *                 @OA\Property(property="image", type="string", example="sliders/slider1.jpg", description="Slider image path"),
      *                 @OA\Property(property="link", type="string", nullable=true, example="https://example.com", description="Optional link URL"),
@@ -70,7 +70,7 @@ class HomeController extends Controller
         $sliders = [
             [
                 'id' => 1,
-                'title' => 'Welcome to LaraBaseX',
+                'title' => 'Welcome to EcommerzX',
                 'description' => 'Best platform for your needs',
                 'image' => 'sliders/slider1.jpg',
                 'link' => null,

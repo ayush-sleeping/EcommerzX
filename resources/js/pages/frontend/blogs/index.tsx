@@ -18,7 +18,7 @@ export default function BlogsPage({ blogs }: { blogs: Blog[] }) {
                 <span className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600">Learning Resources</span>
                 <h1 className="mt-4 text-4xl font-bold">Master the Stack</h1>
                 <p className="mt-2 text-gray-500">
-                    Discover the best resources to learn Laravel, React, TypeScript, and Inertia.js - everything you need to excel with LaraBaseX.
+                    Discover the best resources to learn Laravel, React, TypeScript, and Inertia.js - everything you need to excel with EcommerzX.
                 </p>
 
                 <Link href="/blogs" className="mt-4 inline-flex items-center text-primary hover:underline">

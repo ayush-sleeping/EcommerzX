@@ -45,11 +45,11 @@ export const ThankYouSection = ({
     },
     breakout = {
         src: '/logo.svg',
-        alt: 'LaraBaseX Logo',
-        title: 'Get Started with LaraBaseX',
+        alt: 'EcommerzX Logo',
+        title: 'Get Started with EcommerzX',
         description: 'While you wait for our response, explore the comprehensive documentation and start building amazing applications.',
         buttonText: 'View Documentation',
-        buttonUrl: 'https://github.com/ayush-sleeping/LaraBaseX/tree/main/documentation',
+        buttonUrl: 'https://github.com/ayush-sleeping/EcommerzX/tree/main/documentation',
     },
     nextStepsTitle = 'What happens next?',
     nextSteps = [
@@ -70,7 +70,7 @@ export const ThankYouSection = ({
         },
         {
             label: 'Community',
-            description: 'Join discussions and connect with other LaraBaseX developers.',
+            description: 'Join discussions and connect with other EcommerzX developers.',
             icon: '👥',
         },
     ],
@@ -151,7 +151,7 @@ export const ThankYouSection = ({
                     {/* Quick Links */}
                     <div className="mt-10 flex flex-wrap justify-center gap-4">
                         <Button variant="outline" size="sm" asChild>
-                            <a href="https://github.com/ayush-sleeping/LaraBaseX/issues/new" target="_blank" rel="noopener noreferrer">
+                            <a href="https://github.com/ayush-sleeping/EcommerzX/issues/new" target="_blank" rel="noopener noreferrer">
                                 Report Issue
                             </a>
                         </Button>
@@ -162,7 +162,7 @@ export const ThankYouSection = ({
                             <Link href="/services">View Features</Link>
                         </Button>
                         <Button variant="outline" size="sm" asChild>
-                            <Link href="/about">About LaraBaseX</Link>
+                            <Link href="/about">About EcommerzX</Link>
                         </Button>
                     </div>
 

@@ -24,7 +24,7 @@ VERBOSE=false
 
 # Function to display help
 show_help() {
-    echo "PHPStan Analysis Script for LaraBaseX"
+    echo "PHPStan Analysis Script for EcommerzX"
     echo ""
     echo "Usage: $0 [OPTIONS]"
     echo ""

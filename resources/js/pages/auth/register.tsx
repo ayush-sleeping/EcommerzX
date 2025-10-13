@@ -42,7 +42,7 @@ export default function Register() {
                         <div className="flex size-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
                             <GalleryVerticalEnd className="size-4" />
                         </div>
-                        LaraBaseX
+                        EcommerzX
                     </a>
                     <div className="flex flex-col gap-6">
                         <Card className="overflow-hidden p-0">
@@ -187,7 +187,7 @@ export default function Register() {
                                     <div className="absolute inset-0 flex items-center justify-center">
                                         <div className="text-center">
                                             <div className="mb-4 text-6xl">🎉</div>
-                                            <h2 className="text-2xl font-bold text-foreground">Join LaraBaseX</h2>
+                                            <h2 className="text-2xl font-bold text-foreground">Join EcommerzX</h2>
                                             <p className="mt-2 text-muted-foreground">Start building amazing apps with Laravel & React</p>
                                         </div>
                                     </div>

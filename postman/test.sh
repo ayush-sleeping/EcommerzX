@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# LaraBaseX API Testing with Newman
+# EcommerzX API Testing with Newman
 # Automated testing script for the Postman collection
 
-echo "🧪 LaraBaseX API Testing with Newman"
+echo "🧪 EcommerzX API Testing with Newman"
 echo "===================================="
 
 # Check if Newman is installed
@@ -13,9 +13,9 @@ if ! command -v newman &> /dev/null; then
 fi
 
 # Set variables
-COLLECTION="postman/LaraBaseX-API-Collection.json"
-LOCAL_ENV="postman/LaraBaseX-Local-Environment.json"
-PROD_ENV="postman/LaraBaseX-Production-Environment.json"
+COLLECTION="postman/EcommerzX-API-Collection.json"
+LOCAL_ENV="postman/EcommerzX-Local-Environment.json"
+PROD_ENV="postman/EcommerzX-Production-Environment.json"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 
 echo ""

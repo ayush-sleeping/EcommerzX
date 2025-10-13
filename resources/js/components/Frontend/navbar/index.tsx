@@ -22,8 +22,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../
 const Logo = (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
     return (
         <img
-            src="/logo_larabasex.png"
-            alt="LaraBaseX Logo"
+            src="/logo_ecommerzx.png"
+            alt="EcommerzX Logo"
             width={32}
             height={32}
             style={{ display: 'inline-block', verticalAlign: 'middle' }}
@@ -268,7 +268,7 @@ export const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
                                 className="flex cursor-pointer items-center space-x-2 text-primary transition-colors hover:text-primary/90"
                             >
                                 <div className="text-2xl">{logo}</div>
-                                <span className="hidden text-xl font-bold sm:inline-block">LaraBaseX</span>
+                                <span className="hidden text-xl font-bold sm:inline-block">EcommerzX</span>
                             </button>
                             {/* Desktop navigation - icon only */}
                             {/* ---------------------------------------------------------------------------------- */}

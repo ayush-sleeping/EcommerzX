@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# LaraBaseX Postman Collection Setup Script
+# EcommerzX Postman Collection Setup Script
 # This script helps set up the Postman collection for testing
 
-echo "🚀 LaraBaseX Postman Collection Setup"
+echo "🚀 EcommerzX Postman Collection Setup"
 echo "======================================"
 
 # Check if Postman is installed
@@ -23,22 +23,22 @@ fi
 
 echo ""
 echo "📁 Available Files:"
-echo "   - Collection: postman/LaraBaseX-API-Collection.json"
-echo "   - Local Environment: postman/LaraBaseX-Local-Environment.json"
-echo "   - Production Environment: postman/LaraBaseX-Production-Environment.json"
+echo "   - Collection: postman/EcommerzX-API-Collection.json"
+echo "   - Local Environment: postman/EcommerzX-Local-Environment.json"
+echo "   - Production Environment: postman/EcommerzX-Production-Environment.json"
 echo "   - Documentation: postman/README.md"
 
 echo ""
 echo "🔧 Quick Setup Steps:"
-echo "   1. Import Collection: postman/LaraBaseX-API-Collection.json"
-echo "   2. Import Environment: postman/LaraBaseX-Local-Environment.json"
+echo "   1. Import Collection: postman/EcommerzX-API-Collection.json"
+echo "   2. Import Environment: postman/EcommerzX-Local-Environment.json"
 echo "   3. Set Environment as active in Postman"
 echo "   4. Run Authentication flow to get access token"
 
 echo ""
 echo "🧪 Test Collection via Newman:"
-echo "   newman run postman/LaraBaseX-API-Collection.json \\"
-echo "     -e postman/LaraBaseX-Local-Environment.json \\"
+echo "   newman run postman/EcommerzX-API-Collection.json \\"
+echo "     -e postman/EcommerzX-Local-Environment.json \\"
 echo "     --reporters cli,html \\"
 echo "     --reporter-html-export newman-report.html"
 

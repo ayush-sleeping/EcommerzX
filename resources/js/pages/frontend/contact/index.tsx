@@ -162,7 +162,7 @@ export const Contact = ({
                                 <li>
                                     <span className="font-bold">🐛 Found a Bug? </span>
                                     <a
-                                        href="https://github.com/ayush-sleeping/LaraBaseX/issues/new"
+                                        href="https://github.com/ayush-sleeping/EcommerzX/issues/new"
                                         target="_blank"
                                         className="text-blue-600 underline"
                                     >
@@ -172,7 +172,7 @@ export const Contact = ({
                                 <li>
                                     <span className="font-bold">💡 Feature Request? </span>
                                     <a
-                                        href="https://github.com/ayush-sleeping/LaraBaseX/discussions"
+                                        href="https://github.com/ayush-sleeping/EcommerzX/discussions"
                                         target="_blank"
                                         className="text-blue-600 underline"
                                     >
@@ -182,7 +182,7 @@ export const Contact = ({
                                 <li>
                                     <span className="font-bold">📖 Documentation: </span>
                                     <a
-                                        href="https://github.com/ayush-sleeping/LaraBaseX/tree/main/documentation"
+                                        href="https://github.com/ayush-sleeping/EcommerzX/tree/main/documentation"
                                         target="_blank"
                                         className="text-blue-600 underline"
                                     >
@@ -201,15 +201,15 @@ export const Contact = ({
 };
 
 export default function ContactPage() {
-    const laraBaseXContactProps = {
+    const ecommerzxContactProps = {
         title: 'Get Support',
-        description: "Need help with LaraBaseX? Found a bug or have suggestions? We're here to help you get the most out of your starter kit.",
+        description: "Need help with EcommerzX? Found a bug or have suggestions? We're here to help you get the most out of your starter kit.",
     };
 
     return (
         <div className="relative min-h-screen w-full bg-white">
             <Navbar />
-            <Contact {...laraBaseXContactProps} />
+            <Contact {...ecommerzxContactProps} />
         </div>
     );
 }

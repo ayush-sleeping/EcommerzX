@@ -1,6 +1,6 @@
 @component('mail::message')
 Hi {{ $first_name }} {{ $last_name }},<br /><br />
-Thank you for your enquiry on LaraBaseX.<br />
+Thank you for your enquiry on EcommerzX.<br />
 We have received your enquiry with the following details:<br /><br />
 
 First Name: {{ $first_name }}<br />
@@ -11,5 +11,5 @@ Description: {{ $description }}<br /><br />
 
 Thanks,<br>
 Support Team,<br />
-LaraBaseX<br />
+EcommerzX<br />
 @endcomponent

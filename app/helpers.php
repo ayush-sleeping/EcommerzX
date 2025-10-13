@@ -1,7 +1,7 @@
 <?php
 
 /**
- * LaraBaseX Project Helpers
+ * EcommerzX Project Helpers
  *
  * This file contains the following helper functions:
  *

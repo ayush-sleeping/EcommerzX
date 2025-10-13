@@ -38,7 +38,7 @@ class EnquiryMail extends Mailable
             'subject' => $this->details['subject'],
             'description' => $this->details['description'],
         ])
-            ->from('ayushbm84@gmail.com', 'LaraBaseX')
-            ->subject('LaraBaseX - Thank You for Your Enquiry');
+            ->from('ayushbm84@gmail.com', 'EcommerzX')
+            ->subject('EcommerzX - Thank You for Your Enquiry');
     }
 }

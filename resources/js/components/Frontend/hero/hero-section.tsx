@@ -8,7 +8,7 @@ export function HeroSection() {
                 Laravel + React Starter Kit
             </span>
             {/* Heading */}
-            <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">Build Modern Web Apps with LaraBaseX</h1>
+            <h1 className="max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">Build Modern Web Apps with EcommerzX</h1>
             {/* Subheading */}
             <p className="mt-6 max-w-2xl text-lg text-gray-500">
                 A powerful Laravel starter kit featuring React, Inertia.js, TypeScript, and Shadcn UI. Get your full-stack application up and running

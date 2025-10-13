@@ -10,11 +10,11 @@ use Illuminate\Routing\Controller as BaseController;
 /**
  * @OA\Info(
  *      version="1.0.0",
- *      title="LaraBaseX API Documentation",
- *      description="A comprehensive API documentation for LaraBaseX - Laravel 12 + ReactJS Full Stack Boilerplate",
+ *      title="EcommerzX API Documentation",
+ *      description="A comprehensive API documentation for EcommerzX - Laravel 12 + ReactJS Full Stack Boilerplate",
  *
  *      @OA\Contact(
- *          email="admin@larabasex.com"
+ *          email="admin@ecommerzx.com"
  *      ),
  *
  *      @OA\License(
@@ -25,7 +25,7 @@ use Illuminate\Routing\Controller as BaseController;
  *
  * @OA\Server(
  *      url=L5_SWAGGER_CONST_HOST,
- *      description="LaraBaseX API Server"
+ *      description="EcommerzX API Server"
  * )
  *
  * @OA\SecurityScheme(

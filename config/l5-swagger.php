@@ -5,7 +5,7 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => 'LaraBaseX API Documentation',
+                'title' => 'EcommerzX API Documentation',
             ],
 
             'routes' => [
