@@ -62,7 +62,7 @@ interface Customer {
     id: number;
     customer_id: string;
     personal_email?: string;
-    designation: string;
+    type: string;
     user: User;
 }
 
@@ -148,7 +148,7 @@ const createColumns = (handleDelete: (id: number, name: string) => void, process
         },
     },
     {
-        accessorKey: 'emp_id',
+        accessorKey: 'customer_id',
         header: ({ column }) => {
             return (
                 <div className="flex justify-center">
@@ -160,7 +160,7 @@ const createColumns = (handleDelete: (id: number, name: string) => void, process
                 </div>
             );
         },
-        cell: ({ row }) => <div className="text-center font-medium">{row.getValue('emp_id')}</div>,
+        cell: ({ row }) => <div className="text-center font-medium">{row.getValue('customer_id')}</div>,
     },
     {
         accessorKey: 'name',
@@ -207,19 +207,19 @@ const createColumns = (handleDelete: (id: number, name: string) => void, process
         },
     },
     {
-        accessorKey: 'designation',
+        accessorKey: 'type',
         header: ({ column }) => {
             return (
                 <div className="flex justify-center">
                     {/* ----------------------------------------------------------------------- :: */}
                     <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
-                        Designation
+                        type
                         <ArrowUpDown className="ml-2 h-4 w-4" />
                     </Button>
                 </div>
             );
         },
-        cell: ({ row }) => <div className="text-center">{row.getValue('designation')}</div>,
+        cell: ({ row }) => <div className="text-center">{row.getValue('type')}</div>,
     },
     {
         accessorKey: 'status',
@@ -532,7 +532,7 @@ export default function Index() {
                                 </div>
                                 <div className="flex items-center justify-between rounded-md bg-white/70 p-3 dark:bg-gray-800/50">
                                     <span className="font-medium text-gray-700 dark:text-gray-300">Customer ID:</span>
-                                    <span className="font-semibold text-gray-900 dark:text-gray-100">{deleteDialog.customer?.cust_id}</span>
+                                    <span className="font-semibold text-gray-900 dark:text-gray-100">{deleteDialog.customer?.customer_id}</span>
                                 </div>
                                 <div className="flex items-start gap-3 rounded-md bg-yellow-50 p-3 dark:bg-yellow-900/20">
                                     <AlertTriangle className="mt-0.5 h-4 w-4 text-yellow-600 dark:text-yellow-400" />

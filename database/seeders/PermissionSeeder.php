@@ -231,23 +231,6 @@ class PermissionSeeder extends Seeder
             // Basic permissions for regular users
             // End of Role Permission
         ],
-        'Employee' => [
-            // Dashboard
-            'dashboard-view',
-
-            // Enquiry - Employees can manage enquiries
-            'enquiry-view',
-            'enquiry-store',
-            'enquiry-update',
-
-            // End of Role Permission
-        ],
-        'Customer' => [
-            // No permissions for now - customers have no data access
-            // Dashboard access might be added later if needed
-
-            // End of Role Permission
-        ],
     ];
 
     /**

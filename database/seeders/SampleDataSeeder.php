@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Employee;
 use App\Models\Enquiry;
 use App\Models\Role;
 use App\Models\User;
@@ -22,8 +21,6 @@ class SampleDataSeeder extends Seeder
         $rootRole = Role::where('name', 'RootUser')->first();
         $adminRole = Role::where('name', 'Admin')->first();
         $userRole = Role::where('name', 'User')->first();
-        $employeeRole = Role::where('name', 'Employee')->first();
-        $customerRole = Role::where('name', 'Customer')->first();
 
         // 2. Create sample users and assign roles
         $users = [
@@ -51,17 +48,9 @@ class SampleDataSeeder extends Seeder
                 'password' => Hash::make('password'),
                 'status' => 'ACTIVE',
             ],
-            [
-                'first_name' => 'Emma',
-                'last_name' => 'Employee',
-                'email' => 'emma.employee@example.com',
-                'mobile' => '9000000003',
-                'password' => Hash::make('password'),
-                'status' => 'ACTIVE',
-            ],
         ];
         $userModels = [];
-        $roleNames = ['RootUser', 'Admin', 'Employee', 'Customer', 'User'];
+        $roleNames = ['RootUser', 'Admin', 'User'];
 
         foreach ($users as $i => $userData) {
             $user = User::create($userData);
@@ -69,32 +58,7 @@ class SampleDataSeeder extends Seeder
             $userModels[] = $user;
         }
 
-        // 3. Create employees linked to users
-        $employees = [
-            [
-                'user_id' => $userModels[0]->id,
-                'emp_id' => 'EMP-0001',
-                'personal_email' => 'alice.personal@company.com',
-                'designation' => 'RootUser',
-            ],
-            [
-                'user_id' => $userModels[1]->id,
-                'emp_id' => 'EMP-0002',
-                'personal_email' => 'bob.personal@company.com',
-                'designation' => 'Admin',
-            ],
-            [
-                'user_id' => $userModels[2]->id, // Emma (Employee)
-                'emp_id' => 'EMP-0003',
-                'personal_email' => 'emma.personal@company.com',
-                'designation' => 'Customer Support',
-            ],
-        ];
-        foreach ($employees as $empData) {
-            Employee::create($empData);
-        }
-
-        // 4. Create sample enquiries
+        // 3. Create sample enquiries
         $enquiries = [
             [
                 'first_name' => 'John',
