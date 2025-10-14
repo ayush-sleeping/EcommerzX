@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class AttributeValue extends Model
 {
     use HasFactory, Hashidable;
-    protected $table = 'attribute_values';
+    protected $table = 'attributevalues';
     protected $fillable = ['attribute_id', 'name', 'color', 'status', 'slug', 'index'];
 
     public function attribute()
