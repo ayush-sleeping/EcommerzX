@@ -155,7 +155,27 @@ class PermissionSeeder extends Seeder
                 ],
             ],
         ],
-        // End of Permission Arr
+        'Attribute' => [
+            'controller' => 'Backend\AttributeController',
+            'permissions' => [
+                'attribute-view' => [
+                    'index',
+                    'data',
+                    'list',
+                    'show',
+                ],
+                'attribute-store' => [
+                    'create',
+                    'store',
+                ],
+                'attribute-update' => [
+                    'edit',
+                    'update',
+                    'changeStatus',
+                ],
+            ],
+        ],
+        // End of Permission Group
     ];
 
     /**
@@ -194,6 +214,11 @@ class PermissionSeeder extends Seeder
             'analytics-store',
             'analytics-update',
 
+            // Attribute
+            'attribute-view',
+            'attribute-store',
+            'attribute-update',
+
             // End of Role Permission
         ],
         'Admin' => [
@@ -220,6 +245,11 @@ class PermissionSeeder extends Seeder
             'enquiry-view',
             'enquiry-store',
             'enquiry-update',
+
+            // Attributes
+            'attribute-view',
+            'attribute-store',
+            'attribute-update',
 
             // End of Role Permission
 

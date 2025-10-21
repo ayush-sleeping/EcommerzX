@@ -20,15 +20,12 @@ import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import {
     AlignHorizontalJustifyStart,
-    ChartBarStacked,
     ChartNoAxesCombined,
     ChevronRight,
     Combine,
     LayoutGrid,
     Notebook,
-    Package,
     ReceiptText,
-    Shapes,
     SquareUser,
     StarHalf,
     Tickets,
@@ -122,24 +119,24 @@ const navigationGroups = [
                 icon: AlignHorizontalJustifyStart,
                 permission: 'attribute-view',
             },
-            {
-                title: 'Collections',
-                href: '/admin/collections',
-                icon: Shapes,
-                permission: 'collection-view',
-            },
-            {
-                title: 'Categories',
-                href: '/admin/categories',
-                icon: ChartBarStacked,
-                permission: 'category-view',
-            },
-            {
-                title: 'Products',
-                href: '/admin/products',
-                icon: Package,
-                permission: 'product-view',
-            },
+            // {
+            //     title: 'Collections',
+            //     href: '/admin/collections',
+            //     icon: Shapes,
+            //     permission: 'collection-view',
+            // },
+            // {
+            //     title: 'Categories',
+            //     href: '/admin/categories',
+            //     icon: ChartBarStacked,
+            //     permission: 'category-view',
+            // },
+            // {
+            //     title: 'Products',
+            //     href: '/admin/products',
+            //     icon: Package,
+            //     permission: 'product-view',
+            // },
         ],
     },
     {

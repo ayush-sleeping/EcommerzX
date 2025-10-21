@@ -2,17 +2,32 @@
 
 namespace App\Models;
 
-use App\Traits\Hashidable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Attribute extends Model
+class Attribute extends CoreModel
 {
-    use HasFactory, Hashidable;
     protected $table = 'attributes';
     protected $fillable = ['name', 'label', 'is_color', 'status', 'slug', 'index'];
 
-    public function values()
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'is_color' => 'boolean',
+    ];
+
+    /* Get the hashid for the attribute (for frontend use) :: */
+    public function getHashidAttribute(): string
+    {
+        return $this->getRouteKey();
+    }
+
+    /**
+     * @return HasMany<AttributeValue>
+     */
+    public function values(): HasMany
     {
         return $this->hasMany(AttributeValue::class, 'attribute_id', 'id');
     }

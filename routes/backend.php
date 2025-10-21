@@ -4,13 +4,14 @@ use App\Models\User;
 use Inertia\Inertia;
 use App\Services\QueryCacheService;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\AnalyticsController;
-use App\Http\Controllers\Backend\CustomerController;
-use App\Http\Controllers\Backend\DashboardController;
-use App\Http\Controllers\Backend\EmployeeController;
-use App\Http\Controllers\Backend\EnquiryController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\EnquiryController;
+use App\Http\Controllers\Backend\CustomerController;
+use App\Http\Controllers\Backend\EmployeeController;
+use App\Http\Controllers\Backend\AnalyticsController;
+use App\Http\Controllers\Backend\AttributeController;
+use App\Http\Controllers\Backend\DashboardController;
 
 // Backend Routes
 // -------------------------------------------------------------------------------------------------------- ::
@@ -58,6 +59,17 @@ Route::middleware(['auth', 'verified', 'admin', 'preventBackHistory'])->group(fu
 
         // Analytics
         Route::resource('analytics', AnalyticsController::class);
+
+        // Product related routes ::
+        // ---------------------------------------------------------------- ::
+
+        // Attributes
+        Route::resource('attributes', AttributeController::class);
+        Route::post('attributes/data', [AttributeController::class, 'data'])->name('attributes.data');
+        Route::post('attributes/list', [AttributeController::class, 'list'])->name('attributes.list');
+        Route::post('attributes/change-status', [AttributeController::class, 'changeStatus'])->name('attributes.change.status');
+
+
         // End of File
     });
 });
