@@ -26,6 +26,7 @@ import {
     Combine,
     LayoutGrid,
     Notebook,
+    Package,
     ReceiptText,
     Shapes,
     SquareUser,
@@ -133,12 +134,12 @@ const navigationGroups = [
                 icon: ChartBarStacked,
                 permission: 'category-view',
             },
-            // {
-            //     title: 'Products',
-            //     href: '/admin/products',
-            //     icon: Package,
-            //     permission: 'product-view',
-            // },
+            {
+                title: 'Products',
+                href: '/admin/products',
+                icon: Package,
+                permission: 'product-view',
+            },
         ],
     },
     {

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\EnquiryController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\EmployeeController;
@@ -83,6 +84,13 @@ Route::middleware(['auth', 'verified', 'admin', 'preventBackHistory'])->group(fu
         Route::post('categories/data', [CategoryController::class, 'data'])->name('categories.data');
         Route::post('categories/list', [CategoryController::class, 'list'])->name('categories.list');
         Route::post('categories/change-status', [CategoryController::class, 'changeStatus'])->name('categories.change.status');
+
+        // Products
+        Route::resource('products', ProductController::class);
+        Route::post('products/data', [ProductController::class, 'data'])->name('products.data');
+        Route::post('products/list', [ProductController::class, 'list'])->name('products.list');
+        Route::post('products/change-status', [ProductController::class, 'changeStatus'])->name('products.change.status');
+        Route::post('products/change-sale', [ProductController::class, 'changeSale'])->name('products.change.sale');
 
         // End of File
     });

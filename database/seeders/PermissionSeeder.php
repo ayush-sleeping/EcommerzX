@@ -215,6 +215,62 @@ class PermissionSeeder extends Seeder
                 ],
             ],
         ],
+        'Product' => [
+            'controller' => 'Backend\ProductController',
+            'permissions' => [
+                'product-view' => [
+                    'index',
+                    'data',
+                    'list',
+                    'show',
+                    'getCategoryProperties',
+                    'getProductImages',
+                    'getProductPrices',
+                    'addSpecification',
+                    'editSpecification',
+                    'deleteSpecification',
+                    'exportProductData',
+                    'exportSampleExcel',
+                    'importProductData',
+                    'storeIndex',
+                    'destroy'
+
+                ],
+                'product-store' => [
+                    'create',
+                    'store',
+                    'getCategoryProperties',
+                    'getProductImages',
+                    'getProductPrices',
+                    'addSpecification',
+                    'editSpecification',
+                    'deleteSpecification',
+                    'exportProductData',
+                    'exportSampleExcel',
+                    'importProductData',
+                    'storeIndex',
+                    'destroy'
+                ],
+                'product-update' => [
+                    'edit',
+                    'update',
+                    'changeStatus',
+                    'changeSale',
+                    'changeHomeFeaturedStatus',
+                    'getCategoryProperties',
+                    'getProductImages',
+                    'getProductPrices',
+                    'addSpecification',
+                    'editSpecification',
+                    'deleteSpecification',
+                    'exportProductData',
+                    'exportSampleExcel',
+                    'importProductData',
+                    'storeIndex',
+                    'destroy'
+                ],
+            ]
+        ],
         // End of Permission Group
     ];
 
@@ -269,6 +325,11 @@ class PermissionSeeder extends Seeder
             'category-store',
             'category-update',
 
+            // Product
+            'product-view',
+            'product-store',
+            'product-update',
+
             // End of Role Permission
         ],
         'Admin' => [
@@ -310,6 +371,11 @@ class PermissionSeeder extends Seeder
             'category-view',
             'category-store',
             'category-update',
+
+            // Product
+            'product-view',
+            'product-store',
+            'product-update',
 
             // End of Role Permission
 

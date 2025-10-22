@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('category_ids')->nullable();
             $table->unsignedBigInteger('attribute_id')->nullable();
             $table->string('status')->default('INACTIVE');
+            $table->string('sale')->default('INACTIVE');
             $table->string('index')->nullable();
 
             $table->string('featured')->default('INACTIVE');

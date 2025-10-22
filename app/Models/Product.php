@@ -3,10 +3,14 @@
 namespace App\Models;
 
 use DataTables;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use App\Traits\Hashidable;
 use App\Models\Category;
+use App\Models\Attribute;
+use App\Traits\Hashidable;
+use App\Models\ProductPhoto;
+use App\Models\ProductPrice;
+use App\Models\ProductSpecification;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -36,9 +40,20 @@ class Product extends Model
     protected $casts = [
         'category_ids' => 'array',
     ];
+
+    protected $appends = ['category'];
+
     public function attribute()
     {
         return $this->belongsTo(Attribute::class, 'attribute_id');
+    }
+
+    public function getCategoryAttribute()
+    {
+        if (!empty($this->category_ids) && is_array($this->category_ids)) {
+            return ['name' => Category::whereIn('id', $this->category_ids)->pluck('name')->implode(', ')];
+        }
+        return ['name' => 'N/A'];
     }
 
     public function getCategoryNamesAttribute()
