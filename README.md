@@ -1,10 +1,10 @@
-## 🚀  &nbsp; LaraBaseX
-> A Laravel 12 + ReactJS Full Stack Starter Boilerplate.
-This is a secure, modular, production-ready base project using Laravel 12 with ReactJS frontend, ideal for building scalable web applications without Blade.
+## 🚀  &nbsp; EcommerzX
+<!-- > A Laravel 12 + ReactJS Full Stack Starter Boilerplate.
+This is a secure, modular, production-ready base project using Laravel 12 with ReactJS frontend, ideal for building scalable web applications without Blade. -->
 
-[![Product Name Screen Shot](public/larabasex_frontend.png)](https://example.com)
+
 [![Product Name Screen Shot](public/backend%20output%20screenshot.png)](https://example.com)
-
+<!--
 ## Overview
 
 What LaraBaseX Is
@@ -469,4 +469,4 @@ LaraBaseX/
 ├── vite.config.ts
 ```
 
-<p align="right"><a href="#top"><img src="https://img.shields.io/badge/-Back%20to%20Top-blueviolet?style=for-the-badge" /></a></p>
+<p align="right"><a href="#top"><img src="https://img.shields.io/badge/-Back%20to%20Top-blueviolet?style=for-the-badge" /></a></p> -->
