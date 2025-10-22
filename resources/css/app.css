@@ -141,29 +141,79 @@
 }
 
 @theme inline {
-    --color-sidebar:
-        var(--sidebar);
-    --color-sidebar-foreground:
-        var(--sidebar-foreground);
-    --color-sidebar-primary:
-        var(--sidebar-primary);
-    --color-sidebar-primary-foreground:
-        var(--sidebar-primary-foreground);
-    --color-sidebar-accent:
-        var(--sidebar-accent);
-    --color-sidebar-accent-foreground:
-        var(--sidebar-accent-foreground);
-    --color-sidebar-border:
-        var(--sidebar-border);
-    --color-sidebar-ring:
-        var(--sidebar-ring);
+    --color-sidebar: var(--sidebar);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-ring: var(--sidebar-ring);
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
+    * {
+        @apply border-border outline-ring/50;
     }
-  body {
-    @apply bg-background text-foreground;
+    body {
+        @apply bg-background text-foreground;
     }
+}
+
+/* React Select Styling */
+.react-select-container .react-select__control {
+    @apply border-input bg-background text-foreground transition-colors;
+    min-height: 2.5rem;
+    border-radius: calc(var(--radius) - 2px);
+}
+
+.react-select-container .react-select__control:hover {
+    @apply border-input;
+}
+
+.react-select-container .react-select__control--is-focused {
+    @apply border-ring ring-2 ring-ring ring-offset-2 ring-offset-background;
+    box-shadow: none;
+}
+
+.react-select-container .react-select__menu {
+    @apply border border-input bg-popover text-popover-foreground;
+    border-radius: calc(var(--radius) - 2px);
+}
+
+.react-select-container .react-select__option {
+    @apply cursor-pointer;
+}
+
+.react-select-container .react-select__option--is-focused {
+    @apply bg-accent text-accent-foreground;
+}
+
+.react-select-container .react-select__option--is-selected {
+    @apply bg-primary text-primary-foreground;
+}
+
+.react-select-container .react-select__multi-value {
+    @apply bg-secondary;
+    border-radius: calc(var(--radius) - 4px);
+}
+
+.react-select-container .react-select__multi-value__label {
+    @apply text-secondary-foreground;
+}
+
+.react-select-container .react-select__multi-value__remove:hover {
+    @apply bg-destructive text-destructive-foreground;
+}
+
+.react-select-container .react-select__placeholder {
+    @apply text-muted-foreground;
+}
+
+.react-select-container .react-select__input-container {
+    @apply text-foreground;
+}
+
+.react-select-container .react-select__single-value {
+    @apply text-foreground;
 }

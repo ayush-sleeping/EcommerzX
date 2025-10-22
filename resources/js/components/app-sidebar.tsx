@@ -26,6 +26,7 @@ import {
     LayoutGrid,
     Notebook,
     ReceiptText,
+    Shapes,
     SquareUser,
     StarHalf,
     Tickets,
@@ -119,12 +120,12 @@ const navigationGroups = [
                 icon: AlignHorizontalJustifyStart,
                 permission: 'attribute-view',
             },
-            // {
-            //     title: 'Collections',
-            //     href: '/admin/collections',
-            //     icon: Shapes,
-            //     permission: 'collection-view',
-            // },
+            {
+                title: 'Collections',
+                href: '/admin/collections',
+                icon: Shapes,
+                permission: 'collection-view',
+            },
             // {
             //     title: 'Categories',
             //     href: '/admin/categories',

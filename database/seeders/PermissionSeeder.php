@@ -175,6 +175,26 @@ class PermissionSeeder extends Seeder
                 ],
             ],
         ],
+        'Collection' => [
+            'controller' => 'Backend\CollectionController',
+            'permissions' => [
+                'collection-view' => [
+                    'index',
+                    'data',
+                    'list',
+                    'show',
+                ],
+                'collection-store' => [
+                    'create',
+                    'store',
+                ],
+                'collection-update' => [
+                    'edit',
+                    'update',
+                    'changeStatus',
+                ],
+            ],
+        ],
         // End of Permission Group
     ];
 
@@ -219,6 +239,11 @@ class PermissionSeeder extends Seeder
             'attribute-store',
             'attribute-update',
 
+            // Collection
+            'collection-view',
+            'collection-store',
+            'collection-update',
+
             // End of Role Permission
         ],
         'Admin' => [
@@ -250,6 +275,11 @@ class PermissionSeeder extends Seeder
             'attribute-view',
             'attribute-store',
             'attribute-update',
+
+            // Collections
+            'collection-view',
+            'collection-store',
+            'collection-update',
 
             // End of Role Permission
 

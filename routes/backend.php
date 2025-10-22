@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\AnalyticsController;
 use App\Http\Controllers\Backend\AttributeController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\CollectionController;
 
 // Backend Routes
 // -------------------------------------------------------------------------------------------------------- ::
@@ -69,6 +70,11 @@ Route::middleware(['auth', 'verified', 'admin', 'preventBackHistory'])->group(fu
         Route::post('attributes/list', [AttributeController::class, 'list'])->name('attributes.list');
         Route::post('attributes/change-status', [AttributeController::class, 'changeStatus'])->name('attributes.change.status');
 
+        // Collections
+        Route::resource('collections', CollectionController::class);
+        Route::post('collections/data', [CollectionController::class, 'data'])->name('collections.data');
+        Route::post('collections/list', [CollectionController::class, 'list'])->name('collections.list');
+        Route::post('collections/change-status', [CollectionController::class, 'changeStatus'])->name('collections.change.status');
 
         // End of File
     });
