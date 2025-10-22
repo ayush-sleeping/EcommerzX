@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\EnquiryController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\AnalyticsController;
@@ -61,6 +62,7 @@ Route::middleware(['auth', 'verified', 'admin', 'preventBackHistory'])->group(fu
         // Analytics
         Route::resource('analytics', AnalyticsController::class);
 
+
         // Product related routes ::
         // ---------------------------------------------------------------- ::
 
@@ -75,6 +77,12 @@ Route::middleware(['auth', 'verified', 'admin', 'preventBackHistory'])->group(fu
         Route::post('collections/data', [CollectionController::class, 'data'])->name('collections.data');
         Route::post('collections/list', [CollectionController::class, 'list'])->name('collections.list');
         Route::post('collections/change-status', [CollectionController::class, 'changeStatus'])->name('collections.change.status');
+
+        // Categories
+        Route::resource('categories', CategoryController::class);
+        Route::post('categories/data', [CategoryController::class, 'data'])->name('categories.data');
+        Route::post('categories/list', [CategoryController::class, 'list'])->name('categories.list');
+        Route::post('categories/change-status', [CategoryController::class, 'changeStatus'])->name('categories.change.status');
 
         // End of File
     });

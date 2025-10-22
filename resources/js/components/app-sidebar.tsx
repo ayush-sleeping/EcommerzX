@@ -20,6 +20,7 @@ import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import {
     AlignHorizontalJustifyStart,
+    ChartBarStacked,
     ChartNoAxesCombined,
     ChevronRight,
     Combine,
@@ -126,12 +127,12 @@ const navigationGroups = [
                 icon: Shapes,
                 permission: 'collection-view',
             },
-            // {
-            //     title: 'Categories',
-            //     href: '/admin/categories',
-            //     icon: ChartBarStacked,
-            //     permission: 'category-view',
-            // },
+            {
+                title: 'Categories',
+                href: '/admin/categories',
+                icon: ChartBarStacked,
+                permission: 'category-view',
+            },
             // {
             //     title: 'Products',
             //     href: '/admin/products',
