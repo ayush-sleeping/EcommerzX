@@ -53,9 +53,8 @@ class ProductController extends Controller
             ->with('success', 'Product created successfully.');
     }
 
-    public function edit(string $id)
+    public function edit(Product $product)
     {
-        $product = Product::findOrFail($id);
         $categories = Category::where('status', 'ACTIVE')
             ->orderBy('name', 'asc')
             ->get(['id', 'name']);
@@ -63,14 +62,12 @@ class ProductController extends Controller
         return Inertia::render('backend/products/edit', compact('product', 'categories'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        $product = Product::findOrFail($id);
-
         // Custom validation rules for update (exclude current product from unique checks)
         $updateRules = $this->rules;
-        $updateRules['slug'] = 'required|string|unique:products,slug,' . $id;
-        $updateRules['sku'] = 'required|string|unique:products,sku,' . $id;
+        $updateRules['slug'] = 'required|string|unique:products,slug,' . $product->id;
+        $updateRules['sku'] = 'required|string|unique:products,sku,' . $product->id;
 
         // Validate the request
         $request->validate($updateRules, $this->customMessages);
@@ -91,10 +88,8 @@ class ProductController extends Controller
             ->with('success', 'Product updated successfully.');
     }
 
-    public function show(string $id)
+    public function show(Product $product)
     {
-        $product = Product::findOrFail($id);
-
         // Load categories with names
         $categories = Category::whereIn('id', $product->category_ids ?? [])->get();
 
@@ -131,10 +126,8 @@ class ProductController extends Controller
             ->with('success', 'Product sale status updated successfully.');
     }
 
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        $product = Product::findOrFail($id);
-
         // Delete related records first (if any)
         // $product->photos()->delete();
         // $product->prices()->delete();
