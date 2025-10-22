@@ -53,8 +53,12 @@ class SampleDataSeeder extends Seeder
         $roleNames = ['RootUser', 'Admin', 'User'];
 
         foreach ($users as $i => $userData) {
-            $user = User::create($userData);
-            $user->assignRole($roleNames[$i]);
+            // Check if user already exists
+            $user = User::where('email', $userData['email'])->first();
+            if (!$user) {
+                $user = User::create($userData);
+                $user->assignRole($roleNames[$i]);
+            }
             $userModels[] = $user;
         }
 
@@ -86,7 +90,13 @@ class SampleDataSeeder extends Seeder
             ],
         ];
         foreach ($enquiries as $enqData) {
-            Enquiry::create($enqData);
+            // Check if enquiry already exists
+            $exists = Enquiry::where('email', $enqData['email'])
+                ->where('mobile', $enqData['mobile'])
+                ->first();
+            if (!$exists) {
+                Enquiry::create($enqData);
+            }
         }
     }
 }

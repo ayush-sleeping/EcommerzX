@@ -6,8 +6,15 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link, useForm, usePage } from '@inertiajs/react';
-import { CircleAlert, Save, Settings2, Tag } from 'lucide-react';
+import { Head, Link, router, useForm, usePage } from '@inertiajs/react';
+import { CircleAlert, Plus, Save, Settings2, Tag } from 'lucide-react';
+import { useState } from 'react';
+
+interface AttributeValue {
+    id: number | string;
+    name: string;
+    color: string | null;
+}
 
 interface Attribute {
     id: number;
@@ -17,6 +24,7 @@ interface Attribute {
     status: string;
     slug: string;
     index: number;
+    values?: AttributeValue[];
 }
 
 interface PageProps {
@@ -26,6 +34,12 @@ interface PageProps {
 
 export default function Edit() {
     const { attribute } = usePage<PageProps>().props;
+
+    // Initialize attribute values from existing data
+    const [attributeValues, setAttributeValues] = useState<AttributeValue[]>(attribute.values || []);
+    const [nextValueId, setNextValueId] = useState(1);
+    const [deletedValueIds, setDeletedValueIds] = useState<number[]>([]);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const breadcrumbs: BreadcrumbItem[] = [
         {
@@ -38,7 +52,7 @@ export default function Edit() {
         },
     ];
 
-    const { data, setData, put, processing, errors } = useForm({
+    const { data, setData, errors } = useForm({
         name: attribute.name || '',
         label: attribute.label || '',
         is_color: attribute.is_color ? '1' : '0',
@@ -46,7 +60,73 @@ export default function Edit() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        put(route('admin.attributes.update', attribute.id));
+        setIsSubmitting(true);
+
+        // Transform attributeValues to separate arrays (value_name and color)
+        const value_name: { [key: string]: string } = {};
+        const color: { [key: string]: string } = {};
+
+        attributeValues.forEach((value) => {
+            value_name[value.id] = value.name;
+            if (data.is_color === '1' && value.color) {
+                color[value.id] = value.color;
+            }
+        });
+
+        // Create form data
+        const formData: any = {
+            name: data.name,
+            label: data.label,
+            is_color: data.is_color,
+        };
+
+        // Add value_name object if values exist
+        if (Object.keys(value_name).length > 0) {
+            formData.value_name = value_name;
+        }
+
+        // Add color object if it's a color attribute and values exist
+        if (data.is_color === '1' && Object.keys(color).length > 0) {
+            formData.color = color;
+        }
+
+        // Add deleted values as comma-separated string
+        if (deletedValueIds.length > 0) {
+            formData.deleted_values = deletedValueIds.join(',');
+        }
+
+        // Use router.put to send custom data
+        router.put(route('admin.attributes.update', attribute.id), formData, {
+            onSuccess: () => {
+                setIsSubmitting(false);
+            },
+            onError: () => {
+                setIsSubmitting(false);
+            },
+        });
+    };
+
+    const addValue = () => {
+        const newValue: AttributeValue = {
+            id: `temp-${nextValueId}`,
+            name: '',
+            color: '#000000',
+        };
+        setAttributeValues([...attributeValues, newValue]);
+        setNextValueId(nextValueId + 1);
+    };
+
+    const removeValue = (id: number | string) => {
+        // If it's an existing value (numeric ID), add to deleted list
+        if (typeof id === 'number') {
+            setDeletedValueIds([...deletedValueIds, id]);
+        }
+        // Remove from current values
+        setAttributeValues(attributeValues.filter((v) => v.id !== id));
+    };
+
+    const updateValue = (id: number | string, field: 'name' | 'color', value: string) => {
+        setAttributeValues(attributeValues.map((v) => (v.id === id ? { ...v, [field]: value } : v)));
     };
 
     return (
@@ -174,6 +254,95 @@ export default function Edit() {
                                 </div>
                             </CardContent>
                         </Card>
+
+                        {/* Attribute Values Card - Only show when is_color is selected */}
+                        {data.is_color !== '' && (
+                            <Card className="md:col-span-2">
+                                <CardHeader>
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <CardTitle className="flex items-center gap-2">
+                                                <Tag className="h-5 w-5" />
+                                                Add Values
+                                            </CardTitle>
+                                            <CardDescription>
+                                                {data.is_color === '1'
+                                                    ? 'Add color values with names and color codes (e.g., Red, Blue, Green)'
+                                                    : 'Add text values for this attribute (e.g., S, M, L, XL)'}
+                                            </CardDescription>
+                                        </div>
+                                        <Button type="button" onClick={addValue} size="sm" variant="outline">
+                                            <Plus className="mr-2 h-4 w-4" />
+                                            Add Value
+                                        </Button>
+                                    </div>
+                                </CardHeader>
+                                <CardContent>
+                                    {attributeValues.length === 0 ? (
+                                        <div className="rounded-lg border border-dashed p-8 text-center">
+                                            <Tag className="mx-auto h-12 w-12 text-gray-400" />
+                                            <h3 className="mt-4 text-sm font-medium text-gray-900 dark:text-gray-100">No values added yet</h3>
+                                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                                Click "Add Value" button to start adding values to this attribute.
+                                            </p>
+                                        </div>
+                                    ) : (
+                                        <div className="space-y-3">
+                                            {attributeValues.map((value, index) => (
+                                                <div
+                                                    key={value.id}
+                                                    className="rounded-lg border-2 border-blue-500 p-4 transition-all hover:border-blue-600 dark:border-blue-600 dark:hover:border-blue-500"
+                                                >
+                                                    <div className="flex gap-3">
+                                                        {/* Name Input */}
+                                                        <div className="flex-1">
+                                                            <Input
+                                                                id={`value-name-${value.id}`}
+                                                                type="text"
+                                                                value={value.name}
+                                                                onChange={(e) => updateValue(value.id, 'name', e.target.value)}
+                                                                placeholder={
+                                                                    data.is_color === '1' ? 'e.g. Red, Blue, Green' : 'e.g. Small, Medium, Large'
+                                                                }
+                                                                className="h-10"
+                                                                required
+                                                            />
+                                                        </div>
+
+                                                        {/* Color Picker - Only show if is_color is Yes */}
+                                                        {data.is_color === '1' && (
+                                                            <div className="w-32">
+                                                                <Input
+                                                                    id={`value-color-${value.id}`}
+                                                                    type="color"
+                                                                    value={value.color || '#000000'}
+                                                                    onChange={(e) => updateValue(value.id, 'color', e.target.value)}
+                                                                    className="h-10 w-full cursor-pointer"
+                                                                    title="Choose color"
+                                                                    required
+                                                                />
+                                                            </div>
+                                                        )}
+
+                                                        {/* Remove Button */}
+                                                        <Button
+                                                            type="button"
+                                                            variant="destructive"
+                                                            size="icon"
+                                                            onClick={() => removeValue(value.id)}
+                                                            className="h-10 w-10 shrink-0"
+                                                            title="Remove this value"
+                                                        >
+                                                            <CircleAlert className="h-4 w-4" />
+                                                        </Button>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </CardContent>
+                            </Card>
+                        )}
                     </div>
 
                     {/* Form Actions */}
@@ -183,8 +352,8 @@ export default function Edit() {
                                 Cancel
                             </Button>
                         </Link>
-                        <Button type="submit" disabled={processing} className="min-w-[140px]">
-                            {processing ? (
+                        <Button type="submit" disabled={isSubmitting} className="min-w-[140px]">
+                            {isSubmitting ? (
                                 <>
                                     <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
                                     Updating...

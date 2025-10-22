@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';
-import { Calendar, Edit, Hash, Settings2, Tag, Type } from 'lucide-react';
+import { Calendar, Edit, Hash, Palette, Settings2, Tag, Type } from 'lucide-react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -18,6 +18,15 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
+interface AttributeValue {
+    id: number;
+    name: string;
+    color: string | null;
+    status: string;
+    slug: string;
+    index: number;
+}
+
 interface Attribute {
     id: number;
     hashid: string;
@@ -29,6 +38,7 @@ interface Attribute {
     index: number;
     created_at: string;
     updated_at: string;
+    values?: AttributeValue[];
     createdBy?: {
         id: number;
         first_name: string;
@@ -138,6 +148,62 @@ export default function Show() {
                             </div>
                         </CardContent>
                     </Card>
+
+                    {/* Attribute Values Card */}
+                    {attribute.values && attribute.values.length > 0 && (
+                        <Card className="md:col-span-2">
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-2">
+                                    <Palette className="h-5 w-5" />
+                                    Attribute Values
+                                    <Badge variant="secondary" className="ml-2">
+                                        {attribute.values.length} {attribute.values.length === 1 ? 'Value' : 'Values'}
+                                    </Badge>
+                                </CardTitle>
+                                <CardDescription>
+                                    {attribute.is_color
+                                        ? 'Color values associated with this attribute, including their hex codes.'
+                                        : 'Text values associated with this attribute.'}
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                                    {attribute.values.map((value) => (
+                                        <div
+                                            key={value.id}
+                                            className="flex items-center justify-between rounded-lg border-2 border-blue-500 p-4 transition-all hover:border-blue-600 dark:border-blue-600 dark:hover:border-blue-500"
+                                        >
+                                            <div className="flex items-center gap-3">
+                                                {attribute.is_color && value.color && (
+                                                    <div
+                                                        className="h-10 w-10 rounded-md border-2 border-gray-300 shadow-sm dark:border-gray-600"
+                                                        style={{ backgroundColor: value.color }}
+                                                        title={value.color}
+                                                    />
+                                                )}
+                                                <div className="flex flex-col">
+                                                    <span className="font-semibold text-gray-900 dark:text-gray-100">{value.name}</span>
+                                                    {attribute.is_color && value.color && (
+                                                        <span className="font-mono text-xs text-gray-500 dark:text-gray-400">{value.color}</span>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <Badge
+                                                variant="secondary"
+                                                className={
+                                                    value.status === 'ACTIVE'
+                                                        ? 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400'
+                                                        : 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'
+                                                }
+                                            >
+                                                {value.status}
+                                            </Badge>
+                                        </div>
+                                    ))}
+                                </div>
+                            </CardContent>
+                        </Card>
+                    )}
 
                     {/* Technical Details Card */}
                     <Card>

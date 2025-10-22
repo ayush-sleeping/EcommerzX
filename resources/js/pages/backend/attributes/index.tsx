@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Switch } from '@/components/ui/switch';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
@@ -61,7 +62,11 @@ interface Attribute {
 
 // Define columns for the DataTable
 // --------------------------------------------------------------------------------------------------------------- ::
-const createColumns = (handleDelete: (id: number, name: string) => void, processing: boolean): ColumnDef<Attribute>[] => [
+const createColumns = (
+    handleDelete: (id: number, name: string) => void,
+    handleStatusChange: (id: number, currentStatus: string) => void,
+    processing: boolean,
+): ColumnDef<Attribute>[] => [
     {
         id: 'select',
         header: ({ table }) => (
@@ -154,11 +159,19 @@ const createColumns = (handleDelete: (id: number, name: string) => void, process
             );
         },
         cell: ({ row }) => {
-            const status = row.getValue('status') as string;
-            const statusColor = status === 'ACTIVE' ? 'text-green-600 bg-green-100' : 'text-red-600 bg-red-100';
+            const attribute = row.original;
+            const isActive = attribute.status === 'ACTIVE';
             return (
-                <div className="flex justify-center">
-                    <span className={`rounded-full px-2 py-1 text-xs font-medium ${statusColor}`}>{status}</span>
+                <div className="flex items-center justify-center space-x-2">
+                    <ProtectedSection permission="attribute-update" showDeniedMessage={false}>
+                        <Switch
+                            checked={isActive}
+                            onCheckedChange={() => handleStatusChange(attribute.id, attribute.status)}
+                            disabled={processing}
+                            aria-label={`Toggle ${attribute.label} status`}
+                        />
+                    </ProtectedSection>
+                    <span className={`text-xs font-medium ${isActive ? 'text-green-600' : 'text-red-600'}`}>{attribute.status}</span>
                 </div>
             );
         },
@@ -280,6 +293,28 @@ export default function Index() {
     };
 
     // ----------------------------------------------------------------------- ::
+    const handleStatusChange = (id: number, currentStatus: string) => {
+        const newStatus = currentStatus === 'ACTIVE' ? 'INACTIVE' : 'ACTIVE';
+        router.post(
+            route('admin.attributes.change.status'),
+            {
+                attribute_id: id,
+                status: newStatus,
+            },
+            {
+                preserveState: true,
+                preserveScroll: true,
+                onSuccess: () => {
+                    toast.success(`Attribute status updated to ${newStatus}`);
+                },
+                onError: () => {
+                    toast.error('Failed to update attribute status');
+                },
+            },
+        );
+    };
+
+    // ----------------------------------------------------------------------- ::
     const handleStatusFilter = (value: string) => {
         setStatusFilter(value);
 
@@ -325,7 +360,7 @@ export default function Index() {
         setDeleteDialog({ open: false, attribute: null });
     };
 
-    const columns = createColumns(handleDelete, processing);
+    const columns = createColumns(handleDelete, handleStatusChange, processing);
 
     // ----------------------------------------------------------------------- ::
     const table = useReactTable({
